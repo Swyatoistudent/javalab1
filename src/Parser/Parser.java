@@ -49,7 +49,7 @@ public class Parser {
                         writer.write(String.valueOf(result.length()));
                     }
                     writer.write("+");
-                    i++;;
+                    i++;
                 }
                 writer.write("\n");
                 active = false;
@@ -67,6 +67,23 @@ public class Parser {
             }
 
         }
+        linkedList.addLast(buffer);
+        int i = 0;
+        while (i < linkedList.size()) {
+            String result=String.valueOf(linkedList.get(i));
+            if(result.charAt(0)=='"' && result.charAt(result.length()-1)=='"'){
+                result = result.substring(1,result.length()-1);
+            }
+            if(mode.equals("parse")) {
+                writer.write(result);
+            }
+            if (mode.equals("len")){
+                writer.write(String.valueOf(result.length()));
+            }
+            writer.write("+");
+            i++;
+        }
+
         writer.close();
     }
 
